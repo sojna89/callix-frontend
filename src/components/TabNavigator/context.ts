@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ITabContext } from "./types";
+import { ITabContext } from "../../App/types";
 
 const TabContext = createContext<ITabContext | null>(null);
 

@@ -3,8 +3,9 @@ import ErrorMessage from "../ErrorMessage";
 import LaunchTable from "../LaunchTable";
 import Loading from "../Loading";
 
-function UpcomingLaunches() {
-  const {launch: launches, hasError, isLoading} = useLaunch('upcoming');  
+function PastLaunches() {
+  
+  const {launch: launches, hasError, isLoading} = useLaunch('past');
   
   if(isLoading) return <Loading />;
   if(hasError) return <ErrorMessage error={hasError} />
@@ -12,4 +13,4 @@ function UpcomingLaunches() {
   return(<LaunchTable launches={launches} />)
 }
 
-export default UpcomingLaunches;
+export default PastLaunches;

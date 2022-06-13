@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { ITabContext, ITabNavigatorProps, ITabNavItemProps, Tab } from './types';
+import { ITabContext, ITabNavigatorProps, ITabNavItemProps, Tab } from '../../App/types';
 import TabContext from './context';
 import './index.css';
 

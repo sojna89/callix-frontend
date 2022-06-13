@@ -1,4 +1,3 @@
-import React, { useLayoutEffect, useState }  from 'react';
 import useLaunch from '../../hooks/useLaunch';
 import useDate from '../../hooks/useLaunchDate';
 import ErrorMessage from '../ErrorMessage';
@@ -6,11 +5,10 @@ import Loading from '../Loading';
 
 function NextLaunch() {
   const {launch, hasError, isLoading} = useLaunch('next');
-  const {date, time} = useDate(launch?.date_unix)
+  const {date, time} = useDate(launch?.date_unix);
 
   if(isLoading) return <Loading />;
   if(hasError) return <ErrorMessage error={hasError} />
-  // console.log(launch);
 
   return(
     <div className='next-launch-container'>
