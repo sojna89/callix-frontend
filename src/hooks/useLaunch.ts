@@ -10,19 +10,26 @@ const api = axios.create({
 });
 
 const fetcher = async (url: string) => {
-  const res = await api.get(url);
-  console.log(res.data);
-  return res.data
-
+  try {
+    const res = await api.get(url);
+    return res.data
+    
+  } catch (error) {
+    throw error;
+  }
 };
 
 function useLaunch(endpoint: string) {
-  const { data: launch, error: hasError } = useSWR(endpoint, fetcher);
+  const { data: launch, error } = useSWR(endpoint, fetcher);
   
+  let hasError: any = false;
+  if(error != undefined)
+    hasError = `${error}`.replace('AxiosError: ', '');
+
   return {
     launch,
     hasError,
-    isLoading: !hasError && !launch
+    isLoading: !error && !launch
   };
 }
 
