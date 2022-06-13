@@ -1,37 +1,37 @@
-name: Simple workflow
+# name: Simple workflow
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
       
-  pull_request:
-    branches:
-      - main
+#   pull_request:
+#     branches:
+#       - main
       
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
+#     strategy:
+#       matrix:
+#         node-version: [16.x]
   
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Use nodejs ${{ matrix. node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+#       - name: Use nodejs ${{ matrix. node-version }}
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
+#       - name: Install dependencies
+#         run: yarn --frozen-lockfile
 
-      - name: Deploy to heroku
-        if: ${{ github.ref == 'refs/heads/main' }}
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "callix-frontend"
-          heroku_email: "rodrigo.kaos@ymail.com"
+#       - name: Deploy to heroku
+#         if: ${{ github.ref == 'refs/heads/main' }}
+#         uses: akhileshns/heroku-deploy@v3.12.12
+#         with:
+#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#           heroku_app_name: "callix-frontend"
+#           heroku_email: "rodrigo.kaos@ymail.com"
