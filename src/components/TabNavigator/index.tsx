@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react';
 import { ITabContext, ITabNavigatorProps, ITabNavItemProps, Tab } from '../../App/types';
+import useAnalytics from '../../hooks/useAnalytics';
+import useVariant from '../../hooks/useVariant';
 import TabContext from './context';
 import './index.css';
 
@@ -29,6 +31,7 @@ export default TabNavigator;
 
 function TabNav() {
   const { routes } = useContext(TabContext) as ITabContext;
+  const variant = useVariant('C29UiOvoSNafWD1T_pWifg');
   
   return(
     <nav>
@@ -48,12 +51,19 @@ function TabNavItem({label, slug}: ITabNavItemProps) {
     setActiveTab
   } = useContext(TabContext) as ITabContext;
   
+  const gaEventTracker = useAnalytics();
+
   const activeClass = activeSlug === slug? CSS_ACTIVE_CLASS : null;
+
+  const onClick = () => {
+    setActiveTab({slug});
+    gaEventTracker(slug);
+  }
 
   return (
     <button
       className={`tab-button ${activeClass}`}
-      onClick={() => setActiveTab({slug})}>
+      onClick={onClick}>
       {label}
     </button>
   )
